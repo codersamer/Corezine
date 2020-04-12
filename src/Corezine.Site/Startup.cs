@@ -48,9 +48,18 @@ namespace Corezine.Site
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                //FrontEnd Area
+                endpoints.MapAreaControllerRoute(
+                    name : "Users Frontend",
+                    areaName : "Frontend",
+                    pattern : "{controller=Home}/{action=Index}/{id?}"
+                );
+                //Dashboard Area
+                endpoints.MapAreaControllerRoute(
+                    name : "Dashboard",
+                    areaName : "Dashboard",
+                    pattern : "Dashboard/{controller=Home}/{action=Index}/{id?}"
+                );
             });
         }
     }

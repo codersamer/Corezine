@@ -5,9 +5,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Corezine.Site.Models;
 
-namespace Corezine.Site.Controllers
+namespace Corezine.Site.Areas.Frontend.Controllers
 {
     public class HomeController : Controller
     {
@@ -31,7 +30,7 @@ namespace Corezine.Site.Controllers
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            return NotFound();
         }
     }
 }
