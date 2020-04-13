@@ -10,17 +10,24 @@ using System.Threading.Tasks;
 
 namespace Corezine.Site.Areas.Frontend.Controllers
 {
+    [Area("Frontend")]
     public class AccountController : Controller
     {
-        public AccountController(SignInManager<AppUser> loginManager, UserManager<AppUser> userManager, CorezineDatabaseContext context)
+        public AccountController(
+            SignInManager<AppUser> loginManager, 
+            UserManager<AppUser> userManager, 
+            RoleManager<AppRole> rolesManager,
+            CorezineDatabaseContext context)
         {
             LoginManager = loginManager;
             UserManager = userManager;
+            RolesManager = rolesManager;
             Context = context;
         }
 
         public SignInManager<AppUser> LoginManager { get; }
         public UserManager<AppUser> UserManager { get; }
+        public RoleManager<AppRole> RolesManager { get; }
         public CorezineDatabaseContext Context { get; }
 
         [HttpGet]
@@ -63,9 +70,20 @@ namespace Corezine.Site.Areas.Frontend.Controllers
             if(ModelState.IsValid)
             {
                 AppUser user = new AppUser() { Email = registerModel.Email, UserName = registerModel.Username };
+                Boolean IsFirstUser = (Context.Users.Count() == 0);
                 var result = await this.UserManager.CreateAsync(user, registerModel.Password);
                 if(result.Succeeded)
                 {
+                    if(IsFirstUser)
+                    {
+                        //Add Administrator Role and Assign to First User
+                        AppRole adminRole = new AppRole() { Name = "Administrator" };
+                        var roleResult = await this.RolesManager.CreateAsync(adminRole);
+                        if(roleResult.Succeeded)
+                        {
+                            await this.UserManager.AddToRoleAsync(user, adminRole.Name);
+                        }
+                    }
                     await this.LoginManager.SignInAsync(user, true);
                     return Redirect("~/");
                 }

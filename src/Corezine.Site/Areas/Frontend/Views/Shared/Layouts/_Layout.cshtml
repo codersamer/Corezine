@@ -14,7 +14,9 @@
             <div class="container">
                 <!-- Brand -->
                 <div class="navbar-brand">
-                    <a class="navbar-item" asp-area="Frontend" asp-controller="Home" asp-action="Index">Corezine.Site</a>
+                    <a class="navbar-item" asp-area="Frontend" asp-controller="Home" asp-action="Index">
+                        <img src="~/images/corezine-logo-200x200.png" alt="Corezine Site"/>
+                    </a>
 
                     <a role="button" class="navbar-burger burger" aria-label="Menu" aria-expanded="false" data-target="navbar-main-menu">
                         <span aria-hidden="true"></span>
@@ -32,13 +34,17 @@
                         {
                             <a asp-area="Frontend" asp-controller="Account" asp-action="SignIn" class="navbar-item">Login</a>
                             <a asp-area="Frontend" asp-controller="Account" asp-action="Register" class="navbar-item">Register</a>
-                        } else {
+                        }
+                        else
+                        {
                             <span class="navbar-item">Welcome, @User.Identity.Name</span>
-                            <a class="navbar-item">Dashboard</a>
+                            @if (User.IsInRole("Administrator"))
+                            {
+                                <a asp-area="Dashboard" asp-controller="Home" asp-action="Index" class="navbar-item">Dashboard</a>
+                            }
                             <div class="navbar-item">
                                 <div class="buttons">
                                     <a asp-area="Frontend" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Context.Request.Path" class="button is-danger">Logout</a>
-
                                 </div>
                             </div>
                         }

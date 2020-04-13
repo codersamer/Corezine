@@ -6,9 +6,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Dashboard\Controllers\" />
     <Folder Include="Areas\Dashboard\ViewModels\" />
-    <Folder Include="Areas\Dashboard\Views\Shared\" />
+    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Corezine.Site.Areas.Frontend.Controllers
 {
+    [Area("Frontend")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
