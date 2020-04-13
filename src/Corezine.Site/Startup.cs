@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Corezine.Domain.Contracts;
 using Corezine.Domain.Data;
 using Corezine.Domain.Models;
+using Corezine.Domain.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -39,6 +41,8 @@ namespace Corezine.Site
             {
                 options.LoginPath = "/Account/SignIn";
             });
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllersWithViews();
         }
 
