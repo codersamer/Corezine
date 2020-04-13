@@ -1,0 +1,48 @@
+﻿@model SignInModel
+@{
+    ViewBag.Title = "Sign In";
+}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="title">Sign in your Account</h3>
+            <p>
+                Please Provide your Login Credentials in order to log you in, if you don't have one already you can click here to 
+                <a asp-area="Frontend" asp-controller="Account" asp-action="Register" class="has-text-link">Register New Account</a>
+            </p>
+        </div>
+        <div class="column">
+            <h3 class="title is-4">Account Details</h3>
+            <div class="has-text-danger" asp-validation-summary="All"></div>
+            <form method="post" asp-action="SignIn" class="">
+                <div class="field">
+                    <label class="label" asp-for="Username"></label>
+                    <div class="control"><input class="input" asp-for="Username" /></div>
+                    <span asp-validation-for="Username" class="has-text-danger"></span>
+                </div>
+                <div class="field">
+                    <label class="label" asp-for="Password"></label>
+                    <div class="control"><input class="input" asp-for="Password"/></div>
+                    <span asp-validation-for="Password" class="has-text-danger"></span>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <label class="checkbox">
+                            <input asp-for="RememberMe" />
+                            Remember my Login
+                        </label>
+                    </div>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <input type="submit" class="button is-primary" value="Sign In"/>
+                    </div>
+                    <div class="control">
+                        <a href='@Url.Action("Index","Home")' class="button is-light">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

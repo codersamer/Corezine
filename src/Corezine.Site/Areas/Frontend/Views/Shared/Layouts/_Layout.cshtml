@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Corezine</title>
     <link rel="stylesheet" href="~/lib/bulma/bulma.min.css" />
+    <link rel="stylesheet" href="~/lib/bulma/bulma-helpers.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
@@ -27,20 +28,33 @@
                         <a class="navbar-item">Home</a>
                     </div>
                     <div class="navbar-end">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <a asp-area="Frontend" asp-controller="Account" asp-action="SignIn" class="navbar-item">Login</a>
+                            <a asp-area="Frontend" asp-controller="Account" asp-action="Register" class="navbar-item">Register</a>
+                        } else {
+                            <span class="navbar-item">Welcome, @User.Identity.Name</span>
+                            <a class="navbar-item">Dashboard</a>
+                            <div class="navbar-item">
+                                <div class="buttons">
+                                    <a asp-area="Frontend" asp-controller="Account" asp-action="Logout" asp-route-returnUrl="@Context.Request.Path" class="button is-danger">Logout</a>
 
+                                </div>
+                            </div>
+                        }
                     </div>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <main role="main" class="pb-3">
+        <main role="main" class="">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
+    <footer class="footer has-padding-20 is-fixed-bottom">
+        <div class="content has-text-centered">
             &copy; 2020 - Corezine.Site - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>

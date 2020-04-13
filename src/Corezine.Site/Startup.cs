@@ -35,6 +35,10 @@ namespace Corezine.Site
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedEmail = false;
             }).AddEntityFrameworkStores<CorezineDatabaseContext>();
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Account/SignIn";
+            });
             services.AddControllersWithViews();
         }
 

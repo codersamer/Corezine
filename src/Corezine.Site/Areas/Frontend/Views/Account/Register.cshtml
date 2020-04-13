@@ -1,0 +1,54 @@
+﻿@model RegisterModel
+@{ 
+    ViewBag.Title = "Register";
+}
+
+<section class="section">
+    <div class="columns">
+        <div class="column">
+            <h3 class="title">Create new Account</h3>
+            <p>
+                Please Provide your Valid Information in order to create a new account, if you already have one you can click here to
+                <a asp-area="Frontend" asp-controller="Account" asp-action="Login" class="has-text-link">Login your Account</a>
+            </p>
+        </div>
+        <div class="column">
+            <h3 class="title is-4">Account Details</h3>
+            <div class="has-text-danger" asp-validation-summary="All"></div>
+            <form method="post" asp-action="Register" class="">
+                <div class="field">
+                    <label class="label" asp-for="Email"></label>
+                    <div class="control"><input class="input" asp-for="Email" /></div>
+                    <span asp-validation-for="Email" class="has-text-danger"></span>
+                </div>
+                <div class="field">
+                    <label class="label" asp-for="Username"></label>
+                    <div class="control">
+                        <input  class="input" asp-for="Username" />
+                        <span asp-validation-for="Username" class="has-text-danger"></span>
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label" asp-for="Password"></label>
+                    <div class="control"><input class="input" asp-for="Password" /></div>
+                    <span asp-validation-for="Password" class="has-text-danger"></span>
+                </div>
+                <div class="field">
+                    <label class="label" asp-for="ConfirmPassword"></label>
+                    <div class="control">
+                        <input class="input" asp-for="ConfirmPassword" />
+                    </div>
+                    <span class="has-text-danger" asp-validation-for="ConfirmPassword"></span>
+                </div>
+                <div class="field is-grouped">
+                    <div class="control">
+                        <input type="submit" class="button is-primary" value="Sign In" />
+                    </div>
+                    <div class="control">
+                        <a href='@Url.Action("Index","Home")' class="button is-light">Back</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
