@@ -1,0 +1,28 @@
+﻿@model CreateUpdateCategoryModel
+@{
+    ViewBag.Title = (Model.CategoryId > 0) ? "Update Category" : "Create Category";
+}
+<h3 class="title is-5">@(Model.CategoryId > 0 ? "Create New" : "Update") Category</h3>
+<div class="box">
+    <form method="post" asp-action="@(Model.CategoryId > 0 ? "Edit" : "Create")">
+        <div class="field">
+            <label class="label" asp-for="Name"></label>
+            <div class="control">
+                <input class="input" asp-for="Name"/>
+            </div>
+        </div>
+        <div class="field is-grouped">
+            @if(Model.CategoryId > 0)
+            {
+                <input type="hidden" asp-for="CategoryId" />
+            }
+            <div class="control">
+                <input class="button is-primary" type="submit" value="Create" />
+            </div>
+            <div class="control">
+                <input class="button is-light" type="reset" value="Reset" />
+            </div>
+            
+        </div>
+    </form>
+</div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Corezine.Domain.Contracts
 {
@@ -14,5 +15,8 @@ namespace Corezine.Domain.Contracts
         TEntity Get(Int32 id);
         IEnumerable<TEntity> GetAll();
         IEnumerable<TEntity> Find(Expression<Func<TEntity, Boolean>> predicate);
+        Int32 Commit();
+        Task<Int32> CommitAsync();
+
     }
 }

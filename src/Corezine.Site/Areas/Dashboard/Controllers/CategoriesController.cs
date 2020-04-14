@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Corezine.Site.Areas.Dashboard.Controllers
 {
+    [Area("Dashboard")]
     [Authorize(Roles = "Administrator")]
     public class CategoriesController : Controller
     {
@@ -21,20 +22,61 @@ namespace Corezine.Site.Areas.Dashboard.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            return View(CategoriesRepository.GetAll());
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new CreateCategoryModel());
+            return View(new CreateUpdateCategoryModel());
         }
 
         [HttpPost]
-        public IActionResult Create(CreateCategoryModel categoryModel)
+        public IActionResult Create(CreateUpdateCategoryModel categoryModel)
         {
-
+            if(ModelState.IsValid)
+            {
+                CategoriesRepository.Add(new Category() { Name = categoryModel.Name });
+                CategoriesRepository.Commit();
+                return RedirectToAction("Index");
+            }
             return View(categoryModel);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(Int32 id)
+        {
+            Category category = CategoriesRepository.Get(id);
+            if(category != null)
+            {
+                return View("Create", new CreateUpdateCategoryModel() { CategoryId = category.Id, Name = category.Name });
+            }
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public IActionResult Edit(CreateUpdateCategoryModel categoryModel)
+        {
+            if (!ModelState.IsValid) { return View("Create", categoryModel); }
+
+            Category category = CategoriesRepository.Get(categoryModel.CategoryId);
+            if(category != null)
+            {
+                category.Name = categoryModel.Name;
+                CategoriesRepository.Commit();
+            }
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(Int32 id)
+        {
+            Category category = CategoriesRepository.Get(id);
+            if(category != null)
+            {
+                CategoriesRepository.Remove(category);
+                CategoriesRepository.Commit();
+            }
+            return RedirectToAction("Index");
         }
 
         

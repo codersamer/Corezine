@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace Corezine.Site.Areas.Dashboard.ViewModels
 {
-    public class CreateCategoryModel
+    public class CreateUpdateCategoryModel
     {
         [Required]
         [Display(Name = "Category Name")]
         public String Name { get; set; }
+        public Int32 CategoryId { get; set; }
     }
 }

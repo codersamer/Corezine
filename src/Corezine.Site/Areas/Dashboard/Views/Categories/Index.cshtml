@@ -1,0 +1,37 @@
+﻿@model IEnumerable<Category>
+@{ 
+    ViewBag.Title = "Categories";
+}
+
+<div class="panel">
+
+    <div class="panel-heading">
+        <h3 class="title is-5 is-vcentered">Categories List</h3>
+    </div>
+    <div class="panel-block is-clearfix">
+        <a asp-area="Dashboard" asp-controller="Categories" asp-action="Create" class="button is-primary is-pulled-right">Add New Category</a>
+    </div>
+    <div class="panel-block">
+        
+        <table class="table is-bordered is-striped is-full-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            @foreach (Category category in Model)
+            {
+                <tr>
+                    <td>@category.Id</td>
+                    <td>@category.Name</td>
+                    <td>
+                        <a class="button is-warning is-small" asp-area="Dashboard" asp-controller="Categories" asp-action="Edit" asp-route-id="@category.Id">Edit Category</a>
+                        <a class="button is-danger is-small" asp-area="Dashboard" asp-controller="Categories" asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

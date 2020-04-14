@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Corezine.Domain.Repositories
 {
@@ -51,6 +52,16 @@ namespace Corezine.Domain.Repositories
         public void RemoveRange(IEnumerable<TEntity> entities)
         {
             Context.Set<TEntity>().RemoveRange(entities);
+        }
+
+        public Int32 Commit()
+        {
+            return Context.SaveChanges();
+        }
+
+        public Task<Int32> CommitAsync()
+        {
+            return Context.SaveChangesAsync();
         }
     }
 }

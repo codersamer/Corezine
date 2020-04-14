@@ -5,6 +5,19 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200413172257_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200413172257_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414000350_FixCategoriesUpdatedValue.cs" />
+    <Compile Remove="Migrations\20200414000350_FixCategoriesUpdatedValue.Designer.cs" />
+    <Compile Remove="Migrations\20200414001559_RestoreCategoriesDates.cs" />
+    <Compile Remove="Migrations\20200414001559_RestoreCategoriesDates.Designer.cs" />
+    <Compile Remove="Migrations\20200414001906_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414001906_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414003049_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414003049_CreatePostsAndCategories.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.3" />
