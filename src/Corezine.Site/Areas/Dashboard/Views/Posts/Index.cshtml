@@ -1,0 +1,35 @@
+﻿@model IEnumerable<Post>
+@{ 
+    ViewBag.Title = "Posts";
+}
+<div class="panel">
+    <div class="panel-heading">
+        <h3>Created Posts</h3>
+    </div>
+    <div class="panel-block">
+        <a class="button is-primary">Create New Post</a>
+    </div>
+    <div class="panel-block">
+        <table class="table is-bordered is-striped is-full-width">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            @foreach(Post post in Model)
+            {
+                <tr>
+                    <td>@post.Id</td>
+                    <td>@post.Title</td>
+                    <td>@post.Category.Name</td>
+                    <td>@post.User.UserName</td>
+                    <td></td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

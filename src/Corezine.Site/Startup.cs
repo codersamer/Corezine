@@ -41,7 +41,7 @@ namespace Corezine.Site
             {
                 options.LoginPath = "/Account/SignIn";
             });
-
+            services.AddScoped<IPostsRepository, PostsRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddControllersWithViews();
         }
