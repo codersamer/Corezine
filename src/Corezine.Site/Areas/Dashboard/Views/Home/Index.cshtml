@@ -1,4 +1,60 @@
 ﻿@{ 
     ViewBag.Title = "Home";
 }
+@inject DashboardModel dashboard
 <h3 class="title is-5">Dashboard Page</h3>
+<div class="columns">
+    <div class="column">
+        <div class="box statistic">
+            <div class="media ">
+                <div class="media-left image is-48x48">
+                    <h3 class="icon title is-2 has-text-primary is-block"><i class="fas fa-folder-plus"></i></h3>
+                </div>
+                <div class="media-content ">
+                    <h4 class="title is-4 ">@dashboard.CategoriesCount</h4>
+                    <p class="subtitle is-6">Categories</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="box statistic">
+            <div class="media ">
+                <div class="media-left image is-48x48">
+                    <h3 class="icon title is-2 has-text-link is-block"><i class="fas fa-file-alt"></i></h3>
+                </div>
+                <div class="media-content ">
+                    <h4 class="title is-4 ">112</h4>
+                    <p class="subtitle is-6">Pages</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="box statistic">
+            <div class="media ">
+                <div class="media-left image is-48x48">
+                    <h3 class="icon title is-2 has-text-dark is-block"><i class="fas fa-paste"></i></h3>
+                </div>
+                <div class="media-content ">
+                    <h4 class="title is-4 ">@dashboard.PostsCount</h4>
+                    <p class="subtitle is-6">Published Posts</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="column">
+        <div class="box statistic">
+            <div class="media ">
+                <div class="media-left image is-48x48">
+                    <h3 class="icon title is-2 has-text-danger is-block"><i class="fas fa-user-friends"></i></h3>
+                </div>
+
+                <div class="media-content ">
+                    <h4 class="title is-4 ">@dashboard.UsersCount</h4>
+                    <p class="subtitle is-6">Active Users</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

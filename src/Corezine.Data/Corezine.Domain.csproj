@@ -15,6 +15,20 @@
     <Compile Remove="Migrations\20200414001906_CreatePostsAndCategories.Designer.cs" />
     <Compile Remove="Migrations\20200414003049_CreatePostsAndCategories.cs" />
     <Compile Remove="Migrations\20200414003049_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414003206_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414003206_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414184837_CreatePostsAndCatgories.cs" />
+    <Compile Remove="Migrations\20200414184837_CreatePostsAndCatgories.Designer.cs" />
+    <Compile Remove="Migrations\20200414185004_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414185004_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414185716_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414185716_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414200942_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414200942_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414201954_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414201954_CreatePostsAndCategories.Designer.cs" />
+    <Compile Remove="Migrations\20200414202603_CreatePostsAndCategories.cs" />
+    <Compile Remove="Migrations\20200414202603_CreatePostsAndCategories.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

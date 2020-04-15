@@ -14,8 +14,8 @@ namespace Corezine.Domain.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(maxLength: 100, nullable: true),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: true)
+                    CreatedAt = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdatedAt = table.Column<DateTime>(nullable: false, computedColumnSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {
@@ -34,8 +34,8 @@ namespace Corezine.Domain.Migrations
                     ThumbnailPath = table.Column<string>(maxLength: 255, nullable: true),
                     CategoryId = table.Column<int>(nullable: false),
                     UserId = table.Column<int>(nullable: false),
-                    CreatedAt = table.Column<DateTime>(nullable: false),
-                    UpdatedAt = table.Column<DateTime>(nullable: true)
+                    CreatedAt = table.Column<DateTime>(nullable: false, defaultValueSql: "CURRENT_TIMESTAMP"),
+                    UpdatedAt = table.Column<DateTime>(nullable: false, computedColumnSql: "CURRENT_TIMESTAMP")
                 },
                 constraints: table =>
                 {

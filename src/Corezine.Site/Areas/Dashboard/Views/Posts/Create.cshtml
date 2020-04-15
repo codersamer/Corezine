@@ -1,0 +1,68 @@
+﻿@model CreateUpdatePostViewModel
+@using Corezine.Domain.Enums
+@{ 
+    ViewBag.Title = "New Post";
+}
+
+    <div class="panel">
+        <div class="panel-heading">
+            <h3>Create new Post</h3>
+        </div>
+        <form asp-action="Create" enctype="multipart/form-data">
+            <div class="panel-block">
+                <div class="container">
+                    <div class="columns is-multiline">
+                        <div class="column is-three-fifths">
+
+                            <div class="field">
+                                <label class="label" asp-for="Title"></label>
+                                <div class="control">
+                                    <input class="input" asp-for="Title" />
+                                    <span class="has-text-danger" asp-validation-for="Title"></span>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" asp-for="Thumbnail"></label>
+                                <div class="control">
+                                    <input class="input" asp-for="Thumbnail">
+                                    <span class="has-text-danger" asp-validation-for="ThumbnailName"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="column is-two-fifths">
+                            <div class="field">
+                                <label class="label" asp-for="CategoryId"></label>
+                                <div class="select is-rounded is-info is-full-width">
+                                    <select class="is-full-width" asp-for="CategoryId" asp-items="@(new SelectList(Model.Categories, "Id", "Name" ))"></select>
+                                </div>
+                            </div>
+                            <div class="field">
+                                <label class="label" asp-for="Status"></label>
+                                <div class="select is-rounded is-info is-full-width">
+                                    <select class="is-full-width" asp-for="Status" asp-items="Html.GetEnumSelectList<PostStatus>()"></select>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <!-- Content Editor -->
+                        <div class="column">
+                            <div class="field">
+                                <label class="label" asp-for="Content"></label>
+                                <div class="control">
+                                    <textarea class="textarea editor" asp-for="Content"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-block">
+                <div class="field is-grouped">
+                    <div class="control">
+                        <input type="submit" value="Save Post" class="button is-primary" />
+                        <input type="reset" value="Reset" class="button is-light" />
+                    </div>
+                </div>
+            </div>
+        </form>
+</div>

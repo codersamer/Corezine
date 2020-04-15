@@ -14,10 +14,8 @@ namespace Corezine.Domain.Models
 
         [MaxLength(100)]
         public String Name { get; set; } = "Uncategorized";
-        [Required, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public DateTime CreatedAt { get; set; } = DateTime.Now;
-        [DatabaseGenerated(DatabaseGeneratedOption.Computed)]
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
     }
 }

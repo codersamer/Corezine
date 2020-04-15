@@ -6,6 +6,7 @@ using Corezine.Domain.Contracts;
 using Corezine.Domain.Data;
 using Corezine.Domain.Models;
 using Corezine.Domain.Repositories;
+using Corezine.Site.Areas.Dashboard.ViewModels;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -43,6 +44,8 @@ namespace Corezine.Site
             });
             services.AddScoped<IPostsRepository, PostsRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+            services.AddScoped<DashboardModel, DashboardModel>();
             services.AddControllersWithViews();
         }
 

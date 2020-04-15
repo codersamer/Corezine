@@ -1,22 +1,27 @@
-﻿<aside class="menu">
+﻿@{ 
+    var controller = ViewContext.RouteData.Values["Controller"].ToString();
+    var action = ViewContext.RouteData.Values["Action"].ToString();
+}
+@inject DashboardModel dashboard
+<aside class="menu">
     <p class="menu-label">General</p>
     <ul class="menu-list">
         <li>
-            <a href="./index.html" class="is-active">
+            <a asp-area="Dashboard" asp-controller="Home" asp-action="Index" class="@(controller == "Home" && action == "Index" ? "is-active" : "")">
                 <span class="icon"><i class="fas fa-tachometer-alt"></i></span>
                 Dashboard
             </a>
         </li>
         <li>
             <a href="./blank.html">
-                <span class="icon"><i class="fas fa-file-alt"></i></span>
-                Blank Page
+                <span class="icon"><i class="fas fa-user"></i></span>
+                Users Accounts <span class="tag is-dark is-pulled-right">@dashboard.UsersCount</span>
             </a>
         </li>
         <li>
             <a href="./tables.html">
-                <span class="icon"><i class="fas fa-table"></i></span>
-                Tables
+                <span class="icon"><i class="fas fa-cog"></i></span>
+                Settings
             </a>
         </li>
     </ul>
@@ -25,13 +30,13 @@
         <li>
             <a href="#">
                 <span class="icon"><i class="fas fa-file-alt"></i></span>
-                Pages <span class="tag is-info is-pulled-right">112</span>
+                Pages <span class="tag is-dark is-pulled-right">0</span>
             </a>
         </li>
         <li class="has-dropdown">
-            <a href="#">
+            <a href="#" class="@(controller == "Posts" ? "is-active" : "")">
                 <span class="icon"><i class="fas fa-paste"></i></span>
-                Posts
+                Posts <span class="tag is-dark is-pulled-right">@dashboard.PostsCount</span>
             </a>
             <ul>
                 <li><a asp-area="Dashboard" asp-controller="Posts" asp-action="Create">Create new Post</a></li>
@@ -39,9 +44,9 @@
             </ul>
         </li>
         <li class="has-dropdown">
-            <a href="#">
+            <a href="#" class="@(controller == "Categories" ? "is-active" : "")">
                 <span class="icon"><i class="fas fa-folder-plus"></i></span>
-                Categories
+                Categories <span class="tag is-dark is-pulled-right">@dashboard.CategoriesCount</span>
             </a>
             <ul>
                 <li><a asp-area="Dashboard" asp-controller="Categories" asp-action="Create">Create new</a></li>

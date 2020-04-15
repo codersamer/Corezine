@@ -63,5 +63,15 @@ namespace Corezine.Domain.Repositories
         {
             return Context.SaveChangesAsync();
         }
+
+        public int Count()
+        {
+            return Context.Set<TEntity>().Count();
+        }
+
+        public int Count(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Context.Set<TEntity>().Where(predicate).Count();
+        }
     }
 }
