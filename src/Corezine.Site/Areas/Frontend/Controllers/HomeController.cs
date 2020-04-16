@@ -24,7 +24,6 @@ namespace Corezine.Site.Areas.Frontend.Controllers
         }
         public IActionResult Index()
         {
-            Feedback.Add(Services.Enumrations.FeedbackType.Error, "This is from another page");
             return View();
         }
 

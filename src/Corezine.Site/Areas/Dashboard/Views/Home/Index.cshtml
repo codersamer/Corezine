@@ -4,10 +4,7 @@
 @inject DashboardModel dashboard
 @inject Corezine.Services.Contracts.IFeedbackService feedback
 <h3 class="title is-5">Dashboard Page</h3>
-@foreach(String message in feedback.ErrorFeedback)
-{
-    <div class="notification is-danger">@message</div>
-}
+@feedback.ShowAll()
 <div class="columns">
     <div class="column">
         <div class="box statistic">

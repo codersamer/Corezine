@@ -1,6 +1,7 @@
 ﻿using Corezine.Services.Contracts;
 using Corezine.Services.Entities;
 using Corezine.Services.Enumrations;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -59,10 +60,6 @@ namespace Corezine.Services.Core
             }
             UpdateSession();
         }
-        public String Debug()
-        {
-            return "Hello From Middleware at Request " + Context.Request.Path;
-        }
 
         public IEnumerable<string> Get(FeedbackType type = FeedbackType.Error)
         {
@@ -113,6 +110,67 @@ namespace Corezine.Services.Core
         public void AddDebug(string message)
         {
             Add(FeedbackType.Debug, message);
+        }
+
+        public HtmlString ShowMessage()
+        {
+            return Show(FeedbackType.Message);
+        }
+
+        public HtmlString ShowInfo()
+        {
+            return Show(FeedbackType.Info);
+        }
+
+        public HtmlString ShowSuccess()
+        {
+            return Show(FeedbackType.Success);
+        }
+
+        public HtmlString ShowWarning()
+        {
+            return Show(FeedbackType.Warning);
+        }
+
+        public HtmlString ShowError()
+        {
+            return Show(FeedbackType.Error);
+        }
+
+        public HtmlString ShowDebug()
+        {
+            return Show(FeedbackType.Debug);
+        }
+
+        public HtmlString Show(FeedbackType type = FeedbackType.Error)
+        {
+            String classes = "is-light ";
+            IEnumerable<String> Items = Get(type);
+            switch(type)
+            {
+                case FeedbackType.Debug:    classes = "is-light";  break;
+                case FeedbackType.Error:    classes = "is-danger";  break;
+                case FeedbackType.Info:     classes = "is-dark";  break;
+                case FeedbackType.Message:  classes = "is-info";  break;
+                case FeedbackType.Success:  classes = "is-success";  break;
+                case FeedbackType.Warning:  classes = "is-warning";  break;
+            }
+            String Markup = "";
+            foreach(String item in Items)
+            {
+                Markup += $"<div class=\"notification {classes}\">{item}</div>{Environment.NewLine}";
+            }
+            return new HtmlString(Markup);
+        }
+
+        public HtmlString ShowAll()
+        {
+            HtmlString html = new HtmlString("");
+            foreach(FeedbackType type in Enum.GetValues(typeof(FeedbackType)))
+            {
+                html = new HtmlString(html.Value + Show(type).Value);
+            }
+            return html;
         }
     }
 }

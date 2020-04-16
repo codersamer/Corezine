@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
-
+using Microsoft.AspNetCore.Html;
 namespace Corezine.Services.Contracts
 {
     public interface IFeedbackService
@@ -23,8 +23,20 @@ namespace Corezine.Services.Contracts
         void AddWarning(String message);
         void AddError(String message);
         void AddDebug(String message);
+
+
+        HtmlString Show(FeedbackType type = FeedbackType.Error);
+        HtmlString ShowMessage();
+        HtmlString ShowInfo();
+        HtmlString ShowSuccess();
+        HtmlString ShowWarning();
+        HtmlString ShowError();
+        HtmlString ShowDebug();
+        HtmlString ShowAll();
+
         IEnumerable<String> Get(FeedbackType type = FeedbackType.Error);
-        String Debug();
+
+
     }
     
 
