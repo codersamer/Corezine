@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Corezine.Services;
 
 namespace Corezine.Site
 {
@@ -42,6 +43,9 @@ namespace Corezine.Site
             {
                 options.LoginPath = "/Account/SignIn";
             });
+            services.AddSession();
+            services.AddFeedback();
+            
             services.AddScoped<IPostsRepository, PostsRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
@@ -64,12 +68,11 @@ namespace Corezine.Site
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
             app.UseRouting();
-
             app.UseAuthentication();
             app.UseAuthorization();
-
+            app.UseSession();
+            app.UseFeedback();
             app.UseEndpoints(endpoints =>
             {
                 //FrontEnd Area
